@@ -16,8 +16,16 @@ exports.register = function (req, res) {
   // models 에서 정의한 생성자 함수를 new키워드를 이용하여 req.body에 접근해서 유저가 FORM 에서 제출한 객체 데이터를 바탕으로 생성해준다. argument로 통과 시켜주는 것은 유저가 제출한 req.body
   const user = new User(req.body);
   user.register();
-  res.send('회원가입을 축하드립니다');
-  console.log(user);
+  // 만약 에러 배열이 존재한다면 유저가 입력한 정보의 유효성에 문제가 있는 것이므로
+  if (user.errors.length) {
+    // 유저에게 에러 메세지를 보낸다
+    res.send(user.errors);
+    // 에러 배열의 길이가 0이라면(없다면)
+  } else {
+    // 에러가 없다고 표시해준다
+    res.send('축하합니다');
+    console.log(user);
+  }
 };
 
 // home 함수 : 대시보드에 접근했을 때 렌더링 된다

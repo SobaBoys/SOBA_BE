@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: false }));
 // 2. JSON 데이터를 전송하기 위한 설정 코드
 app.use(express.json());
 
-app.use(express.static('public'));
+app.use(express.static('src/public'));
 // 첫번째 views 는 express 옵션이고 두번째 views 는 우리가 정한 폴더 이름이다
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
